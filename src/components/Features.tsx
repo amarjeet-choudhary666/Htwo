@@ -1,4 +1,4 @@
-import { FaServer, FaShieldAlt, FaDatabase, FaGlobe, FaDesktop, FaDollarSign, FaRocket, FaSync, FaHeadset } from "react-icons/fa";
+import { FaServer, FaShieldAlt, FaDatabase, FaGlobe, FaDesktop, FaDollarSign } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";

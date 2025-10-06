@@ -1,6 +1,5 @@
 import {
   Globe,
-  Server,
   Database,
   Zap,
   LayoutDashboard,

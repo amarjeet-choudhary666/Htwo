@@ -103,7 +103,7 @@ export function ReadyToStartFooter() {
               "No credit card required",
               "14-day free trial",
               "Cancel anytime"
-            ].map((benefit, index) => (
+            ].map((benefit) => (
               <motion.div
                 key={benefit}
                 variants={fadeInUp}

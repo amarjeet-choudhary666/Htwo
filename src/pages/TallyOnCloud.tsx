@@ -8,7 +8,6 @@ import {
   ArrowRight,
   Users,
   Database,
-  Cpu,
 } from "lucide-react";
 import { FaHeadset, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -41,12 +40,6 @@ const staggerContainer = {
       staggerChildren: 0.08,
     },
   },
-};
-
-const scaleIn = {
-  initial: { opacity: 0, scale: 0.95 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.45 },
 };
 
 export default function TallyOnCloud() {
@@ -206,7 +199,7 @@ export default function TallyOnCloud() {
               </motion.p>
 
               <motion.div className="space-y-4" variants={staggerContainer}>
-                {features.map((feature, index) => (
+                {features.map((feature) => (
                   <motion.div key={feature} className="flex items-start group" variants={fadeInUp}>
                     <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mr-4 mt-0.5 group-hover:scale-110 transition-transform duration-200">
                       <CheckCircle className="w-4 h-4 text-white" />

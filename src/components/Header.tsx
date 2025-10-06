@@ -9,7 +9,6 @@ import { MdEmail, MdOutlineStorage, MdBackup } from 'react-icons/md';
 import { FcDataRecovery } from 'react-icons/fc';
 import { IoBagSharp } from 'react-icons/io5';
 import { useTheme } from '../contexts/ThemeContext';
-import htwologo from '../assets/htwologo.png';
 
 interface DropdownItem {
   name: string;

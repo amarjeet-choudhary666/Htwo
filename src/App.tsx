@@ -29,7 +29,6 @@ import { DisasterServiceAsRecovery } from './pages/DisasterServiceAsRecovery'
 import { JoinAsPartner } from './pages/JoinAsPartner'
 import { GoogleWorkspace } from './pages/GoogleWorkspaces'
 import { BusinessEmailZimbra } from './pages/BusinessEmailZimbra'
-import { EmailSolutions } from './pages/EmailSolutions'
 
 function App() {
   return (

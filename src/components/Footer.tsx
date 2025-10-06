@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import htwologo from '../assets/htwologo.png';
 
 const Footer = () => {
   const footerSections = [

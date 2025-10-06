@@ -55,12 +55,6 @@ export const BusyOnCloudPricing = () => {
     }
   ];
 
-  const calculatePrice = (price: any) => {
-    const base = billingCycle === 'monthly' ? price.monthly : price.yearly;
-    const gst = base * 0.18;
-    return base + gst;
-  };
-
   return (
     <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto text-center mb-12">

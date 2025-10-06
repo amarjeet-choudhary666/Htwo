@@ -2,7 +2,6 @@ import { Cloud, Server, Shield, Zap, Users, Globe, CheckCircle, ArrowRight, Play
 import { Button } from '../components/ui/button';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
 import { TrustedByClients } from '@/components/TrustedByClient';
 import { TallyOnCloudPricing } from '@/components/TallyOnCloudPricing';
 
@@ -57,8 +56,6 @@ const LandingPage = () => {
      triggerOnce: true,
      threshold: 0.1,
    });
-
-   const [expandedPlans, setExpandedPlans] = useState<Set<number>>(new Set());
 
   return (
     <div className="min-h-screen bg-white font-poppins">
