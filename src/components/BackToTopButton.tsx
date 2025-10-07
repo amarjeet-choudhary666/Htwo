@@ -40,7 +40,7 @@ const BackToTopButton: React.FC<BackToTopButtonProps> = ({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className={`fixed bottom-8 right-8 z-50 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}
+          className={`fixed bottom-20 right-6 z-50 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}
           aria-label="Back to top"
         >
           <ChevronUp className="w-6 h-6" />

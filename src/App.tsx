@@ -16,6 +16,7 @@ import BusyOnCloud from './pages/BusyOnCloud'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ReadyToStartFooter } from './components/readyToStartFooter';
 import LogoCarousel from './components/logoCarousel'
+import FloatingSupportButtons from './components/FloatingSupportButtons';
 import { MargOnCloud } from './pages/MargOnCloud'
 import { NavisionOnCloud } from './pages/NavisionOnCloud';
 import { CloudForSapBone } from './pages/CloudForSapBOne'
@@ -64,6 +65,7 @@ function App() {
         <ReadyToStartFooter />
         <Footer />
         <BackToTopButton />
+        <FloatingSupportButtons />
       </div>
     </ThemeProvider>
   )
