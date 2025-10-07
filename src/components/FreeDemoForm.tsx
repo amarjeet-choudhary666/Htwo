@@ -3,7 +3,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { Checkbox } from "./ui/checkbox";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const FreeDemoForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ const FreeDemoForm = () => {
     phone: "",
     service: "",
     question: "",
-    captcha: false,
+    recaptchaToken: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -112,23 +112,18 @@ const FreeDemoForm = () => {
           />
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="captcha"
-            name="captcha"
-            checked={formData.captcha}
-            onCheckedChange={(checked) =>
-              setFormData((prev) => ({ ...prev, captcha: !!checked }))
-            }
-            className="h-4 w-4"
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Test site key
+            onChange={(token) => setFormData((prev) => ({ ...prev, recaptchaToken: token || "" }))}
+            onExpired={() => setFormData((prev) => ({ ...prev, recaptchaToken: "" }))}
           />
-          <Label htmlFor="captcha" className="text-sm">I'm not a robot</Label>
         </div>
 
         <Button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 h-9 rounded-md"
-          disabled={!formData.captcha}
+          disabled={!formData.recaptchaToken}
         >
           Submit Now
         </Button>

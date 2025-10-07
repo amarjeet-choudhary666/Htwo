@@ -17,7 +17,7 @@ export default function AddOnStorageTable() {
       <Table className="w-full">
         <TableHeader>
           <TableRow className="bg-gray-100">
-            <TableHead className="text-left">Storage Name</TableHead>
+            <TableHead className="text-left text-black">Storage Name</TableHead>
             <TableHead className="text-center">Type</TableHead>
             <TableHead className="text-center">Price</TableHead>
           </TableRow>
@@ -25,9 +25,9 @@ export default function AddOnStorageTable() {
         <TableBody>
           {storageOptions.map((option, index) => (
             <TableRow key={index} className="hover:bg-gray-50 transition-colors">
-              <TableCell className="text-gray-900">{option.name}</TableCell>
-              <TableCell className="text-center text-gray-800">{option.type}</TableCell>
-              <TableCell className="text-center font-bold text-blue-700">{option.price}</TableCell>
+              <TableCell className="font-medium text-gray-900">{option.name}</TableCell>
+              <TableCell className="text-center text-gray-700">{option.type}</TableCell>
+              <TableCell className="text-center font-bold text-green-600">{option.price}</TableCell>
             </TableRow>
           ))}
         </TableBody>

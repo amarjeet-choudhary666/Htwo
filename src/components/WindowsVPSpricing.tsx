@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Server } from 'lucide-react';
+import { Button } from "@/components/ui/button"; // ShadCN Button
 import { FaHeadset } from 'react-icons/fa';
 
 export default function WindowsVPSPricingTable() {
@@ -29,133 +30,96 @@ export default function WindowsVPSPricingTable() {
     const isHA = activeTab === 'ha';
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4">
+        <div className="min-h-screen bg-white text-gray-900 p-8">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
-                <div className="text-center mb-8">
-                    <p className="text-gray-600 text-sm mb-2">Server Pricing That Makes Sense: Flexible and Predictable</p>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-6">VPS Windows Hosting Plans</h1>
+                <div className="text-center mb-12">
+                    <Server className="w-12 h-12 mx-auto text-blue-600 mb-4" />
+                    <h1 className="text-4xl font-bold mb-2">VPS Windows Hosting Plans</h1>
+                    <p className="text-lg text-gray-700">Server Pricing That Makes Sense: Flexible and Predictable</p>
+                </div>
 
-                    {/* Tab Buttons */}
-                    <div className="flex justify-center gap-4 mb-6">
-                        <button
+                {/* Tab Switcher */}
+                <div className="flex justify-center mb-8">
+                    <div className="bg-gray-100 rounded-lg p-1 inline-flex shadow-sm">
+                        <Button
+                            variant={activeTab === 'non-ha' ? 'default' : 'outline'}
+                            className={activeTab === 'non-ha' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'text-gray-800 hover:bg-gray-200 hover:text-blue-600'}
                             onClick={() => setActiveTab('non-ha')}
-                            className={`px-6 py-3 rounded font-semibold text-sm transition-colors ${activeTab === 'non-ha'
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
                         >
                             NON-HA SOLUTION
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            variant={activeTab === 'ha' ? 'default' : 'outline'}
+                            className={activeTab === 'ha' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'text-gray-800 hover:bg-gray-200 hover:text-blue-600'}
                             onClick={() => setActiveTab('ha')}
-                            className={`px-6 py-3 rounded font-semibold text-sm transition-colors ${activeTab === 'ha'
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
                         >
                             HIGH AVAILABILITY
-                        </button>
+                        </Button>
                     </div>
                 </div>
 
                 {/* Pricing Table */}
-                <div className="bg-white rounded-lg shadow border border-gray-200 overflow-hidden">
-                    {/* Table Header */}
-                    <div className="grid grid-cols-7 gap-3 bg-gray-100 border-b border-gray-300 px-4 py-3">
-                        <div className="text-sm font-semibold text-gray-700">Processor Model</div>
-                        <div className="text-sm font-semibold text-gray-700 text-center">Per GB Ram</div>
-                        <div className="text-sm font-semibold text-gray-700 text-center">Logical vCores</div>
-                        <div className="text-sm font-semibold text-gray-700 text-center">Storage - SSD/NVME</div>
-                        <div className="text-sm font-semibold text-gray-700 text-center">Clock Speed</div>
-                        <div className="text-sm font-semibold text-gray-700 text-center">Bandwidth</div>
-                        <div className="text-sm font-semibold text-gray-700 text-center">Price/Month</div>
-                    </div>
+                <div className="overflow-x-auto rounded-xl shadow border border-gray-200 bg-white">
+                    <table className="w-full">
+                        <thead className="bg-gray-100 text-gray-900">
+                            <tr>
+                                <th className="px-4 py-3 text-left text-sm font-semibold">Processor Model</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">RAM (GB)</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">Logical vCores</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">Storage - SSD/NVME</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">Clock Speed</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">Bandwidth</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">Price/Month</th>
+                                <th className="px-4 py-3 text-center text-sm font-semibold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {currentPlans.map((plan, index) => (
+                                <tr key={index} className={`hover:bg-gray-50 transition-colors ${plan.featured ? 'bg-blue-50' : ''}`}>
+                                    <td className="px-4 py-3 text-sm font-medium">{plan.processor}</td>
+                                    <td className="px-4 py-3 text-sm text-center">{plan.ram}</td>
+                                    <td className="px-4 py-3 text-sm text-center">{plan.cores}</td>
+                                    <td className="px-4 py-3 text-sm text-center">{plan.storage}</td>
+                                    <td className="px-4 py-3 text-sm text-center">{plan.speed}</td>
+                                    <td className="px-4 py-3 text-sm text-center">{plan.bandwidth}</td>
+                                    <td className="px-4 py-3 text-sm text-center font-bold text-blue-700">₹ {plan.price}</td>
+                                    <td className="px-4 py-3 text-center">
+                                        <div className="flex justify-center gap-2">
+                                            <Button className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 text-sm">Buy Now</Button>
+                                            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 text-sm">Enquiry Now</Button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
-                    {/* Table Body */}
-                    {currentPlans.map((plan, index) => (
-                        <div
-                            key={index}
-                            className={`grid grid-cols-7 gap-3 px-4 py-4 border-b border-gray-200 items-center hover:bg-gray-50 transition-colors ${plan.featured ? 'bg-blue-50' : ''
-                                }`}
-                        >
-                            <div className="flex items-center gap-3">
-                                <div className="bg-blue-600 rounded p-2 flex-shrink-0">
-                                    <Server className="w-5 h-5 text-white" />
-                                </div>
-                                <span className="text-sm text-gray-800">{plan.processor}</span>
-                            </div>
-                            <div className="text-center text-sm text-gray-800">{plan.ram}</div>
-                            <div className="text-center text-sm text-gray-800">{plan.cores}</div>
-                            <div className="text-center text-sm text-gray-800">{plan.storage}</div>
-                            <div className="text-center text-sm text-gray-700">{plan.speed}</div>
-                            <div className="text-center text-sm text-gray-800">{plan.bandwidth}</div>
-                            <div className="flex flex-col gap-2">
-                                <span className="text-center font-bold text-gray-900 text-base">₹{plan.price}</span>
-                                <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors">
-                                    Buy Now
-                                </button>
-                                <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors">
-                                    Enquiry Now
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-
-                    {/* Footer Rows */}
-                    <div className="border-t-2 border-gray-300">
-                        <div className="grid grid-cols-2">
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-700 text-center border-r border-gray-300 bg-gray-50">
-                                ADDON / 1GB RAM
-                            </div>
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-900 text-center bg-gray-50">
-                                RS. {isHA ? '250' : '150'}/- MONTHLY
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-2 border-t border-gray-300">
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-700 text-center border-r border-gray-300 bg-gray-50">
-                                ADDON / 1 vCPU
-                            </div>
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-900 text-center bg-gray-50">
-                                RS. {isHA ? '250' : '150'}/- MONTHLY
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-2 border-t border-gray-300">
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-700 text-center border-r border-gray-300 bg-gray-50">
-                                ADDON / 1 GB STORAGE
-                            </div>
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-900 text-center bg-gray-50">
-                                RS. {isHA ? '8' : '5'}/- MONTHLY
-                            </div>
-                        </div>
-                        <div className="border-t border-gray-300 bg-gray-50">
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-700 text-center">
-                                {isHA ? '15 DAYS SNAPSHOT BACKUP INCLUDED' : 'NO BACKUP SNAPSHOT INCLUDED'}
-                            </div>
-                        </div>
-                        <div className="border-t border-gray-300 bg-gray-50">
-                            <div className="px-4 py-3 text-sm font-semibold text-gray-700 text-center">
-                                DATACENTER - TIER - {isHA ? 'IV' : 'III'}
-                            </div>
-                        </div>
+                {/* Features Footer */}
+                <div className="mt-8 bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">All Plans Include:</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-800">
+                        <div>✓ 99.9% Uptime Guarantee</div>
+                        <div>✓ 24/7 Technical Support</div>
+                        <div>✓ DDoS Protection</div>
+                        <div>✓ Full Root Access</div>
+                        <div>✓ {isHA ? '15 Days Snapshot Backup' : 'No Backup Snapshot'}</div>
+                        <div>✓ Data Center Tier {isHA ? 'IV' : 'III'}</div>
                     </div>
                 </div>
 
                 {/* Bottom Note */}
                 <section>
-                    <div>
-                        <div className="text-center mt-12">
-                            <h1 className="flex items-center justify-center gap-2 text-lg font-semibold py-3">
-                                <FaHeadset className="text-blue-800" />
-                                We're Here to Help You
-                            </h1>
-                            <p className="text-xs">Have some questions?<span className="text-orange-500">Chat with us now,</span>or send us an email to get in touch.</p>
-                        </div>
+                    <div className="text-center mt-12">
+                        <h1 className="flex items-center justify-center gap-2 text-lg font-semibold py-3">
+                            <FaHeadset className="text-blue-800" />
+                            We're Here to Help You
+                        </h1>
+                        <p className="text-xs">Have some questions?<span className="text-orange-500">Chat with us now,</span>or send us an email to get in touch.</p>
                     </div>
                 </section>
             </div>
         </div>
-
-
     );
 }

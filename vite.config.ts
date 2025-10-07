@@ -11,4 +11,28 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@clerk/clerk-react', 'lucide-react', 'framer-motion'],
+        },
+      },
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
+  },
+  server: {
+    fs: {
+      strict: true,
+    },
+  },
 })

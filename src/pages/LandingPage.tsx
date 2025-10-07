@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { TrustedByClients } from '@/components/TrustedByClient';
 import { TallyOnCloudPricing } from '@/components/TallyOnCloudPricing';
+import AnimatedSection from '@/components/AnimatedSection';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,17 +14,17 @@ import bg2 from '../assets/bg2.jpg';
 import bg3 from '../assets/bg3.jpg';
 import bg4 from '../assets/bg4.jpg';
 
-// Animation variants
+// Ultra-fast animation variants for performance
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8 }
+  transition: { duration: 0.2 }
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0
     }
   }
 };
@@ -31,32 +32,7 @@ const staggerContainer = {
 const scaleIn = {
   initial: { opacity: 0, scale: 0.9 },
   animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.6 }
-};
-
-// Animated component wrapper
-interface AnimatedSectionProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className = "" }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="initial"
-      animate={inView ? "animate" : "initial"}
-      variants={fadeInUp}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  transition: { duration: 0.2 }
 };
 
 const LandingPage = () => {
@@ -96,7 +72,7 @@ const LandingPage = () => {
               animate={{
                 opacity: index === currentBgIndex ? 1 : 0,
               }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              transition={{ duration: 0.1, ease: "easeInOut" }}
             />
           ))}
           {/* Dark overlay for text readability */}
@@ -114,11 +90,11 @@ const LandingPage = () => {
         <motion.div
           className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 z-10"
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 30, 0],
+            scale: [1, 1.1, 1],
+            x: [0, 15, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 4,
             repeat: Infinity,
             repeatType: "reverse"
           }}
@@ -126,11 +102,11 @@ const LandingPage = () => {
         <motion.div
           className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 z-10"
           animate={{
-            scale: [1.2, 1, 1.2],
-            y: [0, -30, 0],
+            scale: [1.1, 1, 1.1],
+            y: [0, -15, 0],
           }}
           transition={{
-            duration: 10,
+            duration: 5,
             repeat: Infinity,
             repeatType: "reverse"
           }}
@@ -214,7 +190,7 @@ const LandingPage = () => {
                     className="text-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.2 + 0.5 }}
+                    transition={{ delay: index * 0.05 + 0.1 }}
                   >
                     <div className={`text-xl font-bold ${stat.color}`}>{stat.value}</div>
                     <div className="text-xs text-slate-400">{stat.label}</div>
@@ -227,7 +203,7 @@ const LandingPage = () => {
               className="relative"
               initial={{ opacity: 0, x: 100 }}
               animate={heroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl blur-3xl"></div>
               <motion.div
@@ -243,8 +219,8 @@ const LandingPage = () => {
                     <div className="flex items-center space-x-2">
                       <motion.div
                         className="w-2 h-2 bg-green-400 rounded-full"
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 1, repeat: Infinity }}
                       />
                       <span className="text-xs font-medium">All Systems Operational</span>
                     </div>
@@ -263,8 +239,7 @@ const LandingPage = () => {
                         className="bg-white/10 rounded-lg p-3 text-center"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 + 0.8 }}
-                        whileHover={{ scale: 1.05, y: -5 }}
+                        transition={{ delay: index * 0.02 + 0.2 }}
                       >
                         <item.icon className={`w-6 h-6 mx-auto mb-1 ${item.color}`} />
                         <div className="text-sm font-bold">{item.value}</div>
@@ -357,18 +332,13 @@ const LandingPage = () => {
               }
             ].map((feature, index) => (
               <motion.div
-                key={index}
-                variants={scaleIn}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="group bg-white rounded-xl p-4 text-blue-600 shadow-md hover:shadow-lg transition-all duration-300 border border-slate-100 hover:border-blue-200"
-              >
-                <motion.div
-                  className="mb-3 p-2 bg-slate-50 rounded-lg w-fit group-hover:bg-blue-50 transition-colors"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                >
+                 key={index}
+                 variants={scaleIn}
+                 className="group bg-white rounded-xl p-4 text-blue-600 shadow-md hover:shadow-lg transition-all duration-300 border border-slate-100 hover:border-blue-200"
+               >
+                <div className="mb-3 p-2 bg-slate-50 rounded-lg w-fit group-hover:bg-blue-50 transition-colors">
                   <feature.icon className={`w-8 h-8 text-blue-600`} />
-                </motion.div>
+                </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h3>
                 <p className="text-slate-600 leading-relaxed text-sm mb-3">{feature.description}</p>
                 <ul className="space-y-1">
@@ -378,7 +348,7 @@ const LandingPage = () => {
                       className="flex items-center text-xs text-slate-500"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.1 }}
+                      transition={{ delay: idx * 0.02 }}
                     >
                       <CheckCircle className="w-3 h-3 text-green-500 mr-1 flex-shrink-0" />
                       {item}

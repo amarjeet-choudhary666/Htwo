@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import React from 'react';
 
-// Animation variants
+// Ultra-fast animation variants
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8 }
+  transition: { duration: 0.2 }
 };
 
 // Animated component wrapper

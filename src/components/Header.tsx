@@ -10,6 +10,7 @@ import { FcDataRecovery } from 'react-icons/fc';
 import { IoBagSharp } from 'react-icons/io5';
 import { useTheme } from '../contexts/ThemeContext';
 import headerLogo from '../assets/header2.png';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
 interface DropdownItem {
   name: string;
@@ -246,12 +247,21 @@ const Header = () => {
               </motion.div>
             </motion.button>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-gradient-to-r cursor-pointer from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl px-6 py-2 rounded-xl font-semibold transition-all duration-200">
-                <Zap className="w-4 h-4 " />
-                BUY
-              </Button>
-            </motion.div>
+            <SignedOut>
+              <SignInButton>
+                <Button className="bg-black dark:bg-white cursor-pointer hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-black shadow-lg hover:shadow-xl px-4 py-2 rounded-xl font-semibold transition-all duration-200">
+                  Sign In
+                </Button>
+              </SignInButton>
+              <SignUpButton>
+                <Button className="bg-white dark:bg-black cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white shadow-lg hover:shadow-xl px-4 py-2 rounded-xl font-semibold transition-all duration-200">
+                  Sign Up
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </motion.div>
 
           {/* Mobile Menu Button & Dark Mode Toggle */}

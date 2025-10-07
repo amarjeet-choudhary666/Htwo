@@ -104,7 +104,7 @@ export function DedicatedServer() {
             <DedicatedServerPricing />
 
             {/* add storgage scetion  */}
-            <section className="py-10 px-4 sm:px-6 lg:px-8">
+            <section className="py-10 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF]">
                 <div className="max-w-7xl mx-auto">
                     <AddOnStorageTable />
                 </div>
