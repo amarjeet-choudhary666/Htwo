@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, Zap, Activity, FileText, Briefcase, Calculator, Sun, Moon, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronDown, Zap, Activity, FileText, Briefcase, Calculator, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinux, FaWindowRestore, FaAws, FaMicrosoft, FaHandshake } from 'react-icons/fa';
@@ -9,6 +9,7 @@ import { MdEmail, MdOutlineStorage, MdBackup } from 'react-icons/md';
 import { FcDataRecovery } from 'react-icons/fc';
 import { IoBagSharp } from 'react-icons/io5';
 import { useTheme } from '../contexts/ThemeContext';
+import headerLogo from '../assets/header2.png';
 
 interface DropdownItem {
   name: string;
@@ -31,7 +32,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [, setIsScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const subDropdownTimeoutRef = useRef<number | null>(null);
 
@@ -64,6 +65,7 @@ const Header = () => {
         { name: 'Windows Hosting', href: '/windowshosting', icon: FaWindowRestore, description: 'Reliable Windows hosting' },
       ]
     },
+    { name: 'Dedicated Server', href: '/dedicated-server' },
     {
       name: 'VPS Server',
       hasDropdown: true,
@@ -72,7 +74,6 @@ const Header = () => {
         { name: 'VPS Windows', href: '/vpswindows', icon: FaWindowRestore, description: 'Windows Virtual Private Server' },
       ]
     },
-    { name: 'Dedicated Server', href: '/dedicated-server' },
     {
       name: 'Other Services',
       hasDropdown: true,
@@ -107,25 +108,22 @@ const Header = () => {
   const mobileMenuVariants = { hidden: { opacity: 0, height: 0 }, visible: { opacity: 1, height: 'auto' }, exit: { opacity: 0, height: 0 } };
 
   return (
-    <header className={`bg-white/95 dark:bg-gray-900/95 font-poppins backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg' : 'shadow-sm'}`} style={{ backgroundBlendMode: 'multiply' }}>
-      <nav className="container mx-auto px-6 py-2">
+    <header className={`bg-white/95  dark:bg-gray-900/95 font-poppins backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60 sticky top-0 z-50 transition-all duration-300`}>
+      <nav className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-            <Link to="/" className="flex items-center space-x-3 group">
-              
-              <div>
-                <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Htwo</span>
-                <div className="text-xs text-gray-500 dark:text-gray-400 font-medium flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-orange-500" />
-                  Enterprise Cloud Solutions
-                </div>
-              </div>
+            <Link to="/" className="group hover:opacity-90 transition-all duration-300 flex items-center">
+              <img
+                src={headerLogo}
+                alt="Htwo Logo"
+                className="w-45 h-16 py-2 object-contain transition-transform duration-300 hover:scale-110"
+              />
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex text-[13px] items-center space-x-1">
+          <div className="hidden lg:flex text-[15px] items-center space-x-1">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -139,13 +137,13 @@ const Header = () => {
                 {item.href ? (
                   <Link
                     to={item.href}
-                    className={`flex items-center space-x-1 px-4 py-3 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
+                    className={`flex items-center space-x-1 px-3 py-2 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
                   >
                     <span>{item.name}</span>
                   </Link>
                 ) : (
                   <button
-                    className={`flex items-center space-x-1 px-4 py-3 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
+                    className={`flex items-center space-x-1 px-3 py-2 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
                   >
                     <span>{item.name}</span>
                     {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
@@ -184,13 +182,12 @@ const Header = () => {
                                   <div className="flex items-center gap-2">
                                     <div className="font-semibold text-gray-900 dark:text-gray-200 group-hover:text-blue-600 transition-colors">{dropdownItem.name}</div>
                                     {dropdownItem.badge && (
-                                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                                        dropdownItem.badge === 'Popular'
-                                          ? 'bg-orange-100 text-orange-700'
-                                          : dropdownItem.badge === 'New'
+                                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${dropdownItem.badge === 'Popular'
+                                        ? 'bg-orange-100 text-orange-700'
+                                        : dropdownItem.badge === 'New'
                                           ? 'bg-green-100 text-green-700'
                                           : 'bg-blue-100 text-blue-700'
-                                      }`}>{dropdownItem.badge}</span>
+                                        }`}>{dropdownItem.badge}</span>
                                     )}
                                   </div>
                                   <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{dropdownItem.description}</div>
@@ -250,7 +247,7 @@ const Header = () => {
             </motion.button>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-gradient-to-r cursor-pointer from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl px-8 py-2.5 rounded-xl font-semibold transition-all duration-200">
+              <Button className="bg-gradient-to-r cursor-pointer from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl px-6 py-2 rounded-xl font-semibold transition-all duration-200">
                 <Zap className="w-4 h-4 " />
                 BUY
               </Button>
