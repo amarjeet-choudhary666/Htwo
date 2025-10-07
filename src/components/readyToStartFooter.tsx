@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Clock, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 // Animation variants
 const fadeInUp = {
@@ -44,6 +45,8 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className =
 };
 
 export function ReadyToStartFooter() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -83,13 +86,13 @@ export function ReadyToStartFooter() {
             className="flex flex-col sm:flex-row gap-3 justify-center mb-6"
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-sm px-6 py-2 shadow-xl">
+              <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-sm px-6 py-2 shadow-xl" onClick={() => navigate('/get-in-touch')}>
                 Start Free Trial
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" size="lg" className="border-white/30 text-black hover:bg-white/10 text-sm px-6 py-2 backdrop-blur-sm">
+              <Button variant="outline" size="lg" className="border-white/30 text-black hover:bg-white/10 text-sm px-6 py-2 backdrop-blur-sm" onClick={() => navigate('/get-in-touch')}>
                 Schedule Demo
               </Button>
             </motion.div>
