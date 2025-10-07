@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, Zap, Activity, FileText, Briefcase, Calculator, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronDown, Activity, FileText, Briefcase, Calculator, Sun, Moon } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinux, FaWindowRestore, FaAws, FaMicrosoft, FaHandshake } from 'react-icons/fa';
