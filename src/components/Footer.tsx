@@ -34,6 +34,19 @@ const Footer = () => {
         { name: 'Get In Touch', href: '/get-in-touch' },
       ],
     },
+    {
+      title: 'Support',
+      links: [
+        { name: '+91 8595515765', href: 'tel:+911234567890' },
+      ],
+    },
+    {
+      title: 'Sales',
+      links: [
+        { name: '+91 8076225440', href: 'tel:+918076225440' },
+        { name: '+91 8595327337', href: 'tel:+918595327337' },
+      ],
+    },
   ];
 
   return (
@@ -70,7 +83,7 @@ const Footer = () => {
           </div>
 
           {/* Right Section - Footer Links */}
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {footerSections.map((section) => (
               <div key={section.title} className="group flex-1">
                 <h3 className="font-bold text-xl text-white mb-4 relative">
@@ -80,12 +93,21 @@ const Footer = () => {
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.name}>
-                      <Link
-                        to={link.href}
-                        className="text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block text-base font-medium"
-                      >
-                        {link.name}
-                      </Link>
+                      {link.href.startsWith('tel:') ? (
+                        <a
+                          href={link.href}
+                          className="text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block text-base font-medium"
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          className="text-gray-400 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block text-base font-medium"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -94,22 +116,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Contact Information */}
-        <div className="border-t border-gray-700/50 pt-8">
-          <div className="text-center">
-            <h4 className="text-xl font-semibold text-white mb-4">Get In Touch</h4>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-12">
-              <div className="flex items-center space-x-3 bg-gray-800/50 px-6 py-3 rounded-lg hover:bg-gray-800/70 transition-colors">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-gray-300 font-medium">+91 9278686890</span>
-              </div>
-              <div className="flex items-center space-x-3 bg-gray-800/50 px-6 py-3 rounded-lg hover:bg-gray-800/70 transition-colors">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-gray-300 font-medium">+91 9999374000</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </footer>
   );

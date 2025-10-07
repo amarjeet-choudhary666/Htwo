@@ -2,6 +2,24 @@ import ContactForm from "@/components/ContactForm";
 import { Mail, PhoneCall } from "lucide-react";
 
 export default function LifeAtHtwo() {
+    const contactData = [
+        {
+            title: "Pre-Sales Questions",
+            email: "sales@htwo.cloud",
+            phone: "+91-8076225440"
+        },
+        {
+            title: "Sales",
+            email: "sales@htwo.cloud",
+            phone: "011-8595327337"
+        },
+        {
+            title: "Support",
+            email: "info@htwo.cloud",
+            phone: "+91-8595515765"
+        }
+    ];
+
     return (
         <div className="min-h-screen bg-white font-poppins">
             {/* Hero Section */}
@@ -27,56 +45,23 @@ export default function LifeAtHtwo() {
             </div>
 
             <section className="flex flex-col md:flex-row justify-between items-stretch gap-6 px-6 md:px-10 py-10">
-  {/* Sales */}
-  <div className="flex-1 bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-    <h2 className="text-xl font-semibold mb-3 text-gray-800">Sales</h2>
+{contactData.map((item, index) => (
+  <div key={index} className="flex-1 bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+    <h2 className="text-xl font-semibold mb-3 text-gray-800">{item.title}</h2>
     <p className="flex items-center text-gray-600 mb-2">
       <Mail className="w-5 h-5 mr-2 text-gray-500" />
-      <a href="mailto:sales@hostingsafari.com" className="hover:underline">
-        sales@htwo.com
+      <a href={`mailto:${item.email}`} className="hover:underline">
+        {item.email}
       </a>
     </p>
     <p className="flex items-center text-gray-600">
       <PhoneCall className="w-5 h-5 mr-2 text-gray-500" />
-      <a href="tel:+919999374000" className="hover:underline">
-        +91-9999374000
+      <a href={`tel:${item.phone}`} className="hover:underline">
+        {item.phone}
       </a>
     </p>
   </div>
-
-  {/* Support */}
-  <div className="flex-1 bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-    <h2 className="text-xl font-semibold mb-3 text-gray-800">Support</h2>
-    <p className="flex items-center text-gray-600 mb-2">
-      <Mail className="w-5 h-5 mr-2 text-gray-500" />
-      <a href="mailto:support@hostingsafari.com" className="hover:underline">
-        support@htwo.com
-      </a>
-    </p>
-    <p className="flex items-center text-gray-600">
-      <PhoneCall className="w-5 h-5 mr-2 text-gray-500" />
-      <a href="tel:01169655598" className="hover:underline">
-        011-69655598
-      </a>
-    </p>
-  </div>
-
-  {/* Pre-Sales Questions */}
-  <div className="flex-1 bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-    <h2 className="text-xl font-semibold mb-3 text-gray-800">Pre-Sales Questions</h2>
-    <p className="flex items-center text-gray-600 mb-2">
-      <Mail className="w-5 h-5 mr-2 text-gray-500" />
-      <a href="mailto:vikas@hostingsafari.com" className="hover:underline">
-        vikas@htwo.com
-      </a>
-    </p>
-    <p className="flex items-center text-gray-600">
-      <PhoneCall className="w-5 h-5 mr-2 text-gray-500" />
-      <a href="tel:+919268686890" className="hover:underline">
-        +91-9268686890
-      </a>
-    </p>
-  </div>
+))}
 </section>
 
         </div>
