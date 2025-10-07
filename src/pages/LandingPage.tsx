@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { TrustedByClients } from '@/components/TrustedByClient';
 import { TallyOnCloudPricing } from '@/components/TallyOnCloudPricing';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Import background images
 import bg1 from '../assets/bg1.avif';
@@ -59,6 +60,7 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className =
 };
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const [heroRef, heroInView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -185,7 +187,7 @@ const LandingPage = () => {
                 className="flex flex-col sm:flex-row gap-2"
               >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-sm px-5 py-2 shadow-xl">
+                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-sm px-5 py-2 shadow-xl" onClick={() => navigate('/get-in-touch')}>
                     Start Free Trial
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
