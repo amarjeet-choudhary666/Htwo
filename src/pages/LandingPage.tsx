@@ -4,6 +4,13 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { TrustedByClients } from '@/components/TrustedByClient';
 import { TallyOnCloudPricing } from '@/components/TallyOnCloudPricing';
+import { useState, useEffect } from 'react';
+
+// Import background images
+import bg1 from '../assets/bg1.avif';
+import bg2 from '../assets/bg2.jpg';
+import bg3 from '../assets/bg3.jpg';
+import bg4 from '../assets/bg4.jpg';
 
 // Animation variants
 const fadeInUp = {
@@ -52,17 +59,50 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className =
 };
 
 const LandingPage = () => {
-   const [heroRef, heroInView] = useInView({
-     triggerOnce: true,
-     threshold: 0.1,
-   });
+  const [heroRef, heroInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  // Background carousel state
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const backgroundImages = [bg1, bg2, bg3, bg4];
+
+  // Auto-change background every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBgIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
 
   return (
     <div className="min-h-screen bg-white font-poppins">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+      <section className="relative text-white overflow-hidden">
+        {/* Background Carousel */}
+        <div className="absolute inset-0">
+          {backgroundImages.map((bg, index) => (
+            <motion.div
+              key={index}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url(${bg})`,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: index === currentBgIndex ? 1 : 0,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            />
+          ))}
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-10 z-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
@@ -70,7 +110,7 @@ const LandingPage = () => {
 
         {/* Animated Background Elements */}
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 z-10"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 30, 0],
@@ -82,7 +122,7 @@ const LandingPage = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 z-10"
           animate={{
             scale: [1.2, 1, 1.2],
             y: [0, -30, 0],
@@ -94,7 +134,21 @@ const LandingPage = () => {
           }}
         />
 
-        <div ref={heroRef} className="relative container mx-auto px-4 sm:px-6 py-16 lg:py-20">
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          {backgroundImages.map((_, index) => (
+            <button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentBgIndex
+                  ? 'bg-white'
+                  : 'bg-white/50 hover:bg-white/70'
+                }`}
+              onClick={() => setCurrentBgIndex(index)}
+            />
+          ))}
+        </div>
+
+        <div ref={heroRef} className="relative container mx-auto px-4 sm:px-6 py-16 lg:py-20 z-20">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <motion.div
               className="space-y-4"
@@ -336,7 +390,7 @@ const LandingPage = () => {
       </section>
 
       {/* Pricing Section */}
-      <TallyOnCloudPricing/>
+      <TallyOnCloudPricing />
 
       {/* Testimonials Section */}
       <section className="py-16 bg-white">
