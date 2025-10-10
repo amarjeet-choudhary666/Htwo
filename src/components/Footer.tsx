@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import tab from '../assets/footer3.png';
+import logo from '../assets/logo1.png';
 
 const Footer = () => {
   const footerSections = [
@@ -66,7 +66,7 @@ const Footer = () => {
                 className="flex justify-center items-center transition-transform duration-300 hover:scale-105"
               >
                 <img
-                  src={tab}
+                  src={logo}
                   alt="HTwo Logo"
                   className="w-[240px] h-[180px] md:w-[300px] md:h-[220px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
                 />

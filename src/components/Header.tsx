@@ -9,7 +9,7 @@ import { MdEmail, MdOutlineStorage, MdBackup } from 'react-icons/md';
 import { FcDataRecovery } from 'react-icons/fc';
 import { IoBagSharp } from 'react-icons/io5';
 import { useTheme } from '../contexts/ThemeContext';
-import headerLogo from '../assets/header2.png';
+import headerLogo from '../assets/headerlogo.png';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
 interface DropdownItem {
@@ -118,7 +118,7 @@ const Header = () => {
               <img
                 src={headerLogo}
                 alt="Htwo Logo"
-                className="w-45 h-16 py-2 object-contain transition-transform duration-300 hover:scale-110"
+                className="w-45 h-16  py-1 object-contain transition-transform duration-300 hover:scale-110"
               />
             </Link>
           </motion.div>
