@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import tab from '../assets/tab.png';
+import tab from '../assets/footer3.png';
 
 const Footer = () => {
   const footerSections = [
@@ -68,8 +68,9 @@ const Footer = () => {
                 <img
                   src={tab}
                   alt="HTwo Logo"
-                  className="w-[160px] h-[110px] md:w-[200px] md:h-[150px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
+                  className="w-[240px] h-[180px] md:w-[300px] md:h-[220px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
                 />
+
               </Link>
             </div>
 
