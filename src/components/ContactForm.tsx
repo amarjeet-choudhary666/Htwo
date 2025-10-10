@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { Checkbox } from "./ui/checkbox";
 import { Select } from "./ui/select";
+import ReCaptcha from "./ReCaptcha";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +14,10 @@ const ContactForm = () => {
     phone: "",
     service: "",
     question: "",
-    captcha: false,
   });
+
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -31,7 +34,28 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    
+    if (!recaptchaToken) {
+      alert('Please complete the reCAPTCHA verification');
+      return;
+    }
+
+    console.log({ ...formData, recaptchaToken });
+    
+    // Reset form after submission
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      service: "",
+      question: "",
+    });
+    setRecaptchaToken(null);
+    recaptchaRef.current?.reset();
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   return (
@@ -129,24 +153,16 @@ const ContactForm = () => {
           />
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="captcha"
-            name="captcha"
-            checked={formData.captcha}
-            onCheckedChange={(checked) =>
-              setFormData((prev) => ({ ...prev, captcha: !!checked }))
-            }
-          />
-          <Label htmlFor="captcha" className="text-gray-600 text-sm">
-            I'm not a robot
-          </Label>
-        </div>
+        <ReCaptcha
+          ref={recaptchaRef}
+          onChange={handleRecaptchaChange}
+          onExpired={() => setRecaptchaToken(null)}
+        />
 
         <Button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-all disabled:opacity-60"
-          disabled={!formData.captcha}
+          disabled={!recaptchaToken}
         >
           Submit Message
         </Button>

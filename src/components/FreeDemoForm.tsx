@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCaptcha from "./ReCaptcha";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const FreeDemoForm = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +13,10 @@ const FreeDemoForm = () => {
     phone: "",
     service: "",
     question: "",
-    recaptchaToken: "",
   });
+
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -34,7 +37,28 @@ const FreeDemoForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    
+    if (!recaptchaToken) {
+      alert('Please complete the reCAPTCHA verification');
+      return;
+    }
+
+    console.log({ ...formData, recaptchaToken });
+    
+    // Reset form after submission
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      service: "",
+      question: "",
+    });
+    setRecaptchaToken(null);
+    recaptchaRef.current?.reset();
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   return (
@@ -112,18 +136,17 @@ const FreeDemoForm = () => {
           />
         </div>
 
-        <div className="flex justify-center">
-          <ReCAPTCHA
-            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // Test site key
-            onChange={(token) => setFormData((prev) => ({ ...prev, recaptchaToken: token || "" }))}
-            onExpired={() => setFormData((prev) => ({ ...prev, recaptchaToken: "" }))}
-          />
-        </div>
+        <ReCaptcha
+          ref={recaptchaRef}
+          onChange={handleRecaptchaChange}
+          onExpired={() => setRecaptchaToken(null)}
+          size="compact"
+        />
 
         <Button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 h-9 rounded-md"
-          disabled={!formData.recaptchaToken}
+          disabled={!recaptchaToken}
         >
           Submit Now
         </Button>
