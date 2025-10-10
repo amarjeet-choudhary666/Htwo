@@ -56,37 +56,103 @@ const Footer = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:20px_20px]"></div>
       </div>
 
-      <div className="container mx-auto px-6 py-16 relative z-10 ">
-        <div className="   gap-12 mb-12 flex justify-center items-center">
-          {/* Left Section - Logo and Paragraph */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 text-center md:text-left">
-            <div className="flex justify-center items-center flex-shrink-0">
+      <div className="container mx-auto px-6 py-16 relative z-10">
+        {/* Mobile Layout: Logo at top, then links below */}
+        <div className="block lg:hidden">
+          {/* Logo and Paragraph Section - Mobile */}
+          <div className="flex flex-col items-center text-center mb-12">
+            {/* Logo Section */}
+            <div className="mb-6">
               <Link
                 to="/"
-                className="flex justify-center items-center transition-transform duration-300 hover:scale-105"
+                className="inline-block transition-transform duration-300 hover:scale-105"
               >
                 <img
                   src={logo}
                   alt="HTwo Logo"
-                  className="w-[240px] h-[180px] md:w-[300px] md:h-[220px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
+                  className="w-[180px] h-[135px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
                 />
-
               </Link>
             </div>
 
             {/* Paragraph Section */}
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed font-light max-w-xl">
-              Having years of experience, we provide you with something more than server speed.
-              We believe that your success is ours. At
-              <span className="font-semibold text-white"> HTWO</span>, we understand your needs
-              and deliver world-class services.
-            </p>
+            <div className="max-w-lg">
+              <p className="text-gray-300 text-base leading-relaxed font-light">
+                Having years of experience, we provide you with something more than server speed.
+                We believe that your success is ours. At
+                <span className="font-semibold text-white"> HTWO</span>, we understand your needs
+                and deliver world-class services.
+              </p>
+            </div>
           </div>
 
-          {/* Right Section - Footer Links */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Footer Links Section - Mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center">
             {footerSections.map((section) => (
-              <div key={section.title} className="group flex-1">
+              <div key={section.title} className="group">
+                <h3 className="font-bold text-lg text-white mb-4 relative inline-block">
+                  {section.title}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                </h3>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.name}>
+                      {link.href.startsWith('tel:') ? (
+                        <a
+                          href={link.href}
+                          className="text-gray-400 hover:text-white transition-all duration-300 inline-block text-sm font-medium"
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          className="text-gray-400 hover:text-white transition-all duration-300 inline-block text-sm font-medium"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Layout: Logo/paragraph on left, links on right */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start">
+          {/* Left Side - Logo and Paragraph */}
+          <div className="space-y-8">
+            {/* Logo Section */}
+            <div>
+              <Link
+                to="/"
+                className="inline-block transition-transform duration-300 hover:scale-105"
+              >
+                <img
+                  src={logo}
+                  alt="HTwo Logo"
+                  className="w-[240px] h-[180px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
+                />
+              </Link>
+            </div>
+
+            {/* Paragraph Section */}
+            <div>
+              <p className="text-gray-300 text-lg leading-relaxed font-light max-w-lg">
+                Having years of experience, we provide you with something more than server speed.
+                We believe that your success is ours. At
+                <span className="font-semibold text-white"> HTWO</span>, we understand your needs
+                and deliver world-class services.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side - Footer Links */}
+          <div className="grid grid-cols-2 xl:grid-cols-3 gap-8">
+            {footerSections.map((section) => (
+              <div key={section.title} className="group">
                 <h3 className="font-bold text-xl text-white mb-4 relative">
                   {section.title}
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
@@ -116,7 +182,6 @@ const Footer = () => {
             ))}
           </div>
         </div>
-
       </div>
     </footer>
   );
