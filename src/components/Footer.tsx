@@ -59,40 +59,37 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-16 relative z-10">
         {/* Mobile Layout: Logo at top, then links below */}
         <div className="block lg:hidden">
-          {/* Logo and Paragraph Section - Mobile */}
-          <div className="flex flex-col items-center text-center mb-12">
-            {/* Logo Section */}
-            <div className="mb-6">
-              <Link
-                to="/"
-                className="inline-block transition-transform duration-300 hover:scale-105"
-              >
-                <img
-                  src={logo}
-                  alt="HTwo Logo"
-                  className="w-[180px] h-[135px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
-                />
-              </Link>
-            </div>
-
-            {/* Paragraph Section */}
-            <div className="max-w-lg">
-              <p className="text-gray-300 text-base leading-relaxed font-light">
-                Having years of experience, we provide you with something more than server speed.
-                We believe that your success is ours. At
-                <span className="font-semibold text-white"> HTWO</span>, we understand your needs
-                and deliver world-class services.
-              </p>
-            </div>
+          {/* Logo Section - Mobile (Centered) */}
+          <div className="flex justify-center mb-8">
+            <Link
+              to="/"
+              className="inline-block transition-transform duration-300 hover:scale-105"
+            >
+              <img
+                src={logo}
+                alt="HTwo Logo"
+                className="w-[180px] h-[135px] object-contain drop-shadow-xl transition-transform duration-300 hover:scale-110"
+              />
+            </Link>
           </div>
 
-          {/* Footer Links Section - Mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center">
+          {/* Paragraph Section - Mobile (Left Aligned) */}
+          <div className="mb-8">
+            <p className="text-gray-300 text-base leading-relaxed font-light text-left">
+              Having years of experience, we provide you with something more than server speed.
+              We believe that your success is ours. At
+              <span className="font-semibold text-white"> HTWO</span>, we understand your needs
+              and deliver world-class services.
+            </p>
+          </div>
+
+          {/* Footer Links Section - Mobile (Left Aligned Columns) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {footerSections.map((section) => (
-              <div key={section.title} className="group">
-                <h3 className="font-bold text-lg text-white mb-4 relative inline-block">
+              <div key={section.title} className="group text-left">
+                <h3 className="font-bold text-lg text-white mb-4 relative">
                   {section.title}
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                  <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </h3>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
@@ -100,14 +97,14 @@ const Footer = () => {
                       {link.href.startsWith('tel:') ? (
                         <a
                           href={link.href}
-                          className="text-gray-400 hover:text-white transition-all duration-300 inline-block text-sm font-medium"
+                          className="text-gray-400 hover:text-white transition-all duration-300 block text-sm font-medium"
                         >
                           {link.name}
                         </a>
                       ) : (
                         <Link
                           to={link.href}
-                          className="text-gray-400 hover:text-white transition-all duration-300 inline-block text-sm font-medium"
+                          className="text-gray-400 hover:text-white transition-all duration-300 block text-sm font-medium"
                         >
                           {link.name}
                         </Link>
