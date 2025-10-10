@@ -11,7 +11,7 @@ interface ReCaptchaProps {
 
 const ReCaptcha = forwardRef<ReCAPTCHA, ReCaptchaProps>(
   ({ onChange, onExpired, onError, theme = 'light', size = 'normal' }, ref) => {
-    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeCH-MrAAAAABDwoorWabto4QP8qm80PW_H2ABZ';
+    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LcupeUrAAAAAB50W7WHhLeneOpE8Wt0ViiSNv9-';
 
     return (
       <div className="flex justify-center items-center my-6">

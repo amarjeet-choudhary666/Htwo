@@ -18,5 +18,5 @@ export const verifyRecaptcha = async (token: string): Promise<boolean> => {
   }
 };
 
-export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeCH-MrAAAAABDwoorWabto4QP8qm80PW_H2ABZ';
-export const RECAPTCHA_SECRET_KEY = import.meta.env.VITE_RECAPTCHA_SECRET_KEY || '6LeCH-MrAAAAAC9IOvsULj8zAuU5Jqe3gF-yJJ_h';
+export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LcupeUrAAAAAB50W7WHhLeneOpE8Wt0ViiSNv9-';
+export const RECAPTCHA_SECRET_KEY = import.meta.env.VITE_RECAPTCHA_SECRET_KEY || '6LcupeUrAAAAAJDPge8L1C9tOBNIb6PplLPyYeex';
