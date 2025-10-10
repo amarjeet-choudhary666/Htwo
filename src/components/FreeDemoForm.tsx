@@ -62,7 +62,7 @@ const FreeDemoForm = () => {
   };
 
   return (
-    <div className="w-full max-w-md bg-white text-black p-4 sm:p-6 rounded-xl shadow-lg mx-auto font-poppins">
+    <div className="w-full max-w-lg bg-white text-black p-4 sm:p-6 rounded-xl shadow-lg mx-auto font-poppins">
       <h2 className="text-lg sm:text-xl font-bold mb-4 text-center">Get Free Demo Now</h2>
       <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
         <div>
@@ -136,19 +136,36 @@ const FreeDemoForm = () => {
           />
         </div>
 
-        <ReCaptcha
-          ref={recaptchaRef}
-          onChange={handleRecaptchaChange}
-          onExpired={() => setRecaptchaToken(null)}
-          size="compact"
-        />
+        {/* reCAPTCHA Section */}
+        <div className="py-3">
+          <div className="text-center mb-3">
+            <span className="text-sm text-gray-600 font-medium">Security Verification</span>
+          </div>
+          <div className="flex justify-center">
+            <ReCaptcha
+              ref={recaptchaRef}
+              onChange={handleRecaptchaChange}
+              onExpired={() => setRecaptchaToken(null)}
+              size="normal"
+            />
+          </div>
+        </div>
 
         <Button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 h-9 rounded-md"
+          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-sm font-semibold py-2 h-9 rounded-md shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={!recaptchaToken}
         >
-          Submit Now
+          {recaptchaToken ? (
+            <>
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              Submit Now
+            </>
+          ) : (
+            'Complete Verification'
+          )}
         </Button>
       </form>
     </div>

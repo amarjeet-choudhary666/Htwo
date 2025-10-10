@@ -14,16 +14,22 @@ const ReCaptcha = forwardRef<ReCAPTCHA, ReCaptchaProps>(
     const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeCH-MrAAAAABDwoorWabto4QP8qm80PW_H2ABZ';
 
     return (
-      <div className="flex justify-center my-4">
-        <ReCAPTCHA
-          ref={ref}
-          sitekey={siteKey}
-          onChange={onChange}
-          onExpired={onExpired}
-          onError={onError}
-          theme={theme}
-          size={size}
-        />
+      <div className="flex justify-center items-center my-6">
+        <div className="relative">
+          {/* Decorative border */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur opacity-20"></div>
+          <div className="relative bg-white py-1 px-2 rounded-lg border border-gray-200 shadow-sm">
+            <ReCAPTCHA
+              ref={ref}
+              sitekey={siteKey}
+              onChange={onChange}
+              onExpired={onExpired}
+              onError={onError}
+              theme={theme}
+              size={size}
+            />
+          </div>
+        </div>
       </div>
     );
   }
