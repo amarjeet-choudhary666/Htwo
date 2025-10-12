@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, Activity, FileText, Briefcase, Calculator, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronDown, Activity, FileText, Briefcase, Calculator } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinux, FaWindowRestore, FaAws, FaMicrosoft, FaHandshake } from 'react-icons/fa';
@@ -8,7 +8,6 @@ import { SiSap } from 'react-icons/si';
 import { MdEmail, MdOutlineStorage, MdBackup } from 'react-icons/md';
 import { FcDataRecovery } from 'react-icons/fc';
 import { IoBagSharp } from 'react-icons/io5';
-import { useTheme } from '../contexts/ThemeContext';
 import headerLogo from '../assets/headerlogo.png';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
@@ -33,15 +32,33 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null);
-  const [, setIsScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const subDropdownTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 10) {
+        // Always show header at top
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide header
+        setIsVisible(false);
+        setActiveDropdown(null);
+        setIsMenuOpen(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show header
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const navigation: NavigationItem[] = [
     { name: 'Home', href: '/' },
@@ -109,7 +126,7 @@ const Header = () => {
   const mobileMenuVariants = { hidden: { opacity: 0, height: 0 }, visible: { opacity: 1, height: 'auto' }, exit: { opacity: 0, height: 0 } };
 
   return (
-    <header className={`bg-white/95  dark:bg-gray-900/95 font-poppins backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60 sticky top-0 z-50 transition-all duration-300`}>
+    <header className={`bg-white font-poppins fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <nav className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -138,13 +155,13 @@ const Header = () => {
                 {item.href ? (
                   <Link
                     to={item.href}
-                    className={`flex items-center space-x-1 px-3 py-2 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
+                    className={`flex items-center space-x-1 px-3 py-2 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}
                   >
                     <span>{item.name}</span>
                   </Link>
                 ) : (
                   <button
-                    className={`flex items-center space-x-1 px-3 py-2 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/30' : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
+                    className={`flex items-center space-x-1 px-3 py-2 font-medium transition-all duration-200 rounded-xl ${activeDropdown === item.name ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`}
                   >
                     <span>{item.name}</span>
                     {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
@@ -160,9 +177,9 @@ const Header = () => {
                       animate="visible"
                       exit="exit"
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 text-xs w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200/80 dark:border-gray-700/80 overflow-hidden z-50"
+                      className="absolute top-full left-0 mt-2 text-xs w-96 bg-white rounded-2xl shadow-2xl border border-gray-200/80 overflow-hidden z-50"
                     >
-                      <div className="px-6 py-4 border-b text-lg border-gray-100 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30">
+                      <div className="px-6 py-4 border-b text-lg border-gray-100 bg-gradient-to-r from-blue-50 to-purple-50">
                         <h3 className="font-semibold text-gray-900 text-lg">{item.name}</h3>
                         <p className="text-sm text-gray-600 mt-1">Explore our {item.name.toLowerCase()}</p>
                       </div>
@@ -173,7 +190,7 @@ const Header = () => {
                             <motion.div key={dropdownItem.name} whileHover={{ scale: 1.02 }} transition={{ duration: 0.1 }}>
                               <Link
                                 to={dropdownItem.href || '#'}
-                                className="flex items-start space-x-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-all duration-200 group"
+                                className="flex items-start space-x-4 p-4 hover:bg-gray-50/50 rounded-xl transition-all duration-200 group"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-3 rounded-xl group-hover:from-blue-200 group-hover:to-purple-200 transition-all duration-200">
@@ -181,7 +198,7 @@ const Header = () => {
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center gap-2">
-                                    <div className="font-semibold text-gray-900 dark:text-gray-200 group-hover:text-blue-600 transition-colors">{dropdownItem.name}</div>
+                                    <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{dropdownItem.name}</div>
                                     {dropdownItem.badge && (
                                       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${dropdownItem.badge === 'Popular'
                                         ? 'bg-orange-100 text-orange-700'
@@ -191,7 +208,7 @@ const Header = () => {
                                         }`}>{dropdownItem.badge}</span>
                                     )}
                                   </div>
-                                  <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{dropdownItem.description}</div>
+                                  <div className="text-sm text-gray-500 mt-1">{dropdownItem.description}</div>
                                 </div>
                                 {dropdownItem.hasSubDropdown && <ChevronDown className="w-4 h-4 text-gray-400 transform -rotate-90 group-hover:text-blue-600 transition-colors" />}
                               </Link>
@@ -199,7 +216,7 @@ const Header = () => {
                               {/* Nested SubDropdown */}
                               {dropdownItem.hasSubDropdown && activeSubDropdown === dropdownItem.name && (
                                 <div
-                                  className="ml-4 mt-2 border-l border-gray-200 dark:border-gray-700 pl-4"
+                                  className="ml-4 mt-2 border-l border-gray-200 pl-4"
                                   onMouseEnter={() => clearTimeout(subDropdownTimeoutRef.current!)}
                                   onMouseLeave={() => { subDropdownTimeoutRef.current = setTimeout(() => setActiveSubDropdown(null), 300); }}
                                 >
@@ -209,13 +226,13 @@ const Header = () => {
                                       <Link
                                         key={subItem.name}
                                         to={subItem.href || '#'}
-                                        className="flex items-center space-x-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-all duration-200"
+                                        className="flex items-center space-x-3 p-3 hover:bg-gray-50/50 rounded-xl transition-all duration-200"
                                         onClick={() => setActiveDropdown(null)}
                                       >
                                         <SubIcon className="w-5 h-5 text-blue-600" />
                                         <div>
-                                          <div className="font-medium text-gray-900 dark:text-gray-200">{subItem.name}</div>
-                                          <div className="text-sm text-gray-500 dark:text-gray-400">{subItem.description}</div>
+                                          <div className="font-medium text-gray-900">{subItem.name}</div>
+                                          <div className="text-sm text-gray-500">{subItem.description}</div>
                                         </div>
                                       </Link>
                                     );
@@ -235,26 +252,14 @@ const Header = () => {
 
           {/* Desktop CTA Buttons */}
           <motion.div className="hidden lg:flex items-center space-x-3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Toggle dark mode"
-            >
-              <motion.div initial={false} animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                {theme === 'light' ? <Moon className="w-5 h-5 text-gray-700 dark:text-gray-300" /> : <Sun className="w-5 h-5 text-yellow-500" />}
-              </motion.div>
-            </motion.button>
-
             <SignedOut>
               <SignInButton>
-                <Button className="bg-black dark:bg-white cursor-pointer hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-black shadow-lg hover:shadow-xl px-4 py-2 rounded-xl font-semibold transition-all duration-200">
+                <Button className="bg-transparent border border-gray-300 cursor-pointer hover:bg-gray-50/50 text-gray-700 shadow-lg hover:shadow-xl px-4 py-2 rounded-xl font-semibold transition-all duration-200">
                   Sign In
                 </Button>
               </SignInButton>
               <SignUpButton>
-                <Button className="bg-white dark:bg-black cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white shadow-lg hover:shadow-xl px-4 py-2 rounded-xl font-semibold transition-all duration-200">
+                <Button className="bg-transparent border border-blue-500 cursor-pointer hover:bg-blue-50/50 text-blue-600 shadow-lg hover:shadow-xl px-4 py-2 rounded-xl font-semibold transition-all duration-200">
                   Sign Up
                 </Button>
               </SignUpButton>
@@ -264,21 +269,9 @@ const Header = () => {
             </SignedIn>
           </motion.div>
 
-          {/* Mobile Menu Button & Dark Mode Toggle */}
+          {/* Mobile Menu Button */}
           <motion.div className="lg:hidden flex items-center space-x-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Toggle dark mode"
-            >
-              <motion.div initial={false} animate={{ rotate: theme === 'dark' ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                {theme === 'light' ? <Moon className="w-5 h-5 text-gray-700 dark:text-gray-300" /> : <Sun className="w-5 h-5 text-yellow-500" />}
-              </motion.div>
-            </motion.button>
-
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-gray-50/50">
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </motion.div>
@@ -294,14 +287,14 @@ const Header = () => {
                     {item.href ? (
                       <Link
                         to={item.href}
-                        className="flex items-center justify-between w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all duration-200 rounded-xl"
+                        className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50/50 font-medium transition-all duration-200 rounded-xl"
                         onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); }}
                       >
                         <span>{item.name}</span>
                       </Link>
                     ) : (
                       <button
-                        className="flex items-center justify-between w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all duration-200 rounded-xl"
+                        className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50/50 font-medium transition-all duration-200 rounded-xl"
                         onClick={() => item.hasDropdown && setActiveDropdown(activeDropdown === item.name ? null : item.name)}
                       >
                         <span>{item.name}</span>
@@ -316,7 +309,7 @@ const Header = () => {
                           <div key={dropdownItem.name}>
                             <Link
                               to={dropdownItem.href || '#'}
-                              className="flex items-center justify-between w-full px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-all duration-200"
+                              className="flex items-center justify-between w-full px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50/50 rounded-xl transition-all duration-200"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               <span className="flex items-center space-x-2">
@@ -333,7 +326,7 @@ const Header = () => {
                                   <Link
                                     key={subItem.name}
                                     to={subItem.href || '#'}
-                                    className="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-all duration-200"
+                                    className="flex items-center px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50/50 roundxl transition-all duration-200"
                                     onClick={() => setIsMenuOpen(false)}
                                   >
                                     <subItem.icon className="w-4 h-4 text-blue-600 mr-2" />

@@ -1,4 +1,4 @@
-import ContactForm from "@/components/ContactForm";
+import { GetinTouch } from "@/components/GetInTouchForm";
 import { Mail, PhoneCall } from "lucide-react";
 
 export default function LifeAtHtwo() {
@@ -40,7 +40,7 @@ export default function LifeAtHtwo() {
             {/* Contact Form Section */}
             <div className="w-full flex justify-center items-center py-10 px-4">
                 <div className="w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
-                    <ContactForm />
+                    <GetinTouch />
                 </div>
             </div>
 
