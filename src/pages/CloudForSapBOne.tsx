@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import FreeDemoForm from "@/components/FreeDemoForm";
 import { TrustedByClients } from "@/components/TrustedByClient";
+import cloudForSapBoNE from "../assets/cloudforsapherosection.avif"
+import cloudsap from "../assets/sap-cloud.webp"
 
 export function CloudForSapBone() {
   return (
@@ -10,7 +12,7 @@ export function CloudForSapBone() {
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80"
+            src={cloudForSapBoNE}
             alt="SAP Cloud Infrastructure"
             className="w-full h-full object-cover"
           />
@@ -139,7 +141,7 @@ export function CloudForSapBone() {
             <div className="flex-1 flex justify-center">
               <motion.img
                 className="w-full max-w-sm sm:max-w-md rounded-lg shadow-lg"
-                src="https://www.hostingsafari.com/assets/img/customers/sap-cloud.webp"
+                src={cloudsap}
                 alt="SAP Cloud"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}

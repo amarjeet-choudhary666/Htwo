@@ -2,6 +2,8 @@ import { FeatureGrid } from "@/components/Features";
 import { GetinTouch } from "@/components/GetInTouchForm";
 import { TrustedByClients } from "@/components/TrustedByClient";
 import { motion } from "framer-motion";
+import navisionHeroSection from "../assets/bgnavision.jpg"
+import navisionfeatures from "../assets/Simplifie.png"
 
 export function NavisionOnCloud() {
   return (
@@ -12,7 +14,7 @@ export function NavisionOnCloud() {
         {/* Enhanced Background with Gradient Overlay */}
         <div className="absolute inset-0">
           <img
-            src="https://static.vecteezy.com/system/resources/thumbnails/053/658/563/small/cloud-technology-futuristic-and-innovation-networking-technology-modern-futuristic-design-cloud-computing-abstract-technology-background-free-vector.jpg"
+            src={navisionHeroSection}
             alt="Cloud Technology Background"
             className="w-full h-full object-cover"
           />
@@ -73,7 +75,7 @@ export function NavisionOnCloud() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 lg:p-8 border border-white/20">
+            <div className=" rounded-2xl   lg:p-8  ">
               <GetinTouch />
             </div>
           </motion.div>
@@ -144,7 +146,7 @@ export function NavisionOnCloud() {
               <div className="relative max-w-lg">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl blur-lg opacity-20"></div>
                 <img
-                  src="https://www.hostingsafari.com/assets/img/customers/Simplifie.png"
+                  src={navisionfeatures}
                   alt="Navision Cloud Solution"
                   className="relative rounded-xl shadow-2xl w-full h-auto"
                 />

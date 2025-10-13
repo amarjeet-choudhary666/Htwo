@@ -2,6 +2,7 @@
 import FreeDemoForm from "@/components/FreeDemoForm";
 import { TrustedByClients } from "@/components/TrustedByClient";
 import { Check } from "lucide-react";
+import Backup from "../assets/backup.webp"
 
 // ✅ Moved mock data OUTSIDE component
 const backupSoftware = [
@@ -101,7 +102,7 @@ export function BackupAndRecovery() {
                     </div>
                     <div className="lg:w-1/2 flex justify-center">
                         <img
-                            src="https://www.hostingsafari.com/assets/img/customers/backup.webp"
+                            src={Backup}
                             alt="Backup and Recovery"
                             className="w-full max-w-sm lg:max-w-md object-contain"
                         />

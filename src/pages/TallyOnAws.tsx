@@ -1,6 +1,7 @@
 import FreeDemoForm from "@/components/FreeDemoForm";
 import TallyOnAwsPricing from "@/components/TallyAwsPricing";
 import { motion } from "framer-motion";
+import tallyonaws from "../assets/tallyonaws.avif"
 
 // Animation variants
 const containerVariants = {
@@ -141,7 +142,7 @@ export default function TallyOnAws() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-90"></div>
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80"
+            src={tallyonaws}
             alt="Data Center"
             className="w-full h-full object-cover"
           />

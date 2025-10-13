@@ -13,6 +13,7 @@ import { FaHeadset, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import LiveChat from "@/components/ChatBox";
 import TallyOnAwsPricing from "@/components/TallyAwsPricing";
+import featured from "../assets/feature-17.svg"
 
 const features = [
   "Access to your data from anywhere, at any time",
@@ -217,7 +218,7 @@ export default function TallyOnCloud() {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl blur-2xl opacity-20" />
                 <img
                   className="relative max-w-full h-auto rounded-2xl shadow-2xl"
-                  src="https://www.hostingsafari.com/assets/img/feature-17.svg"
+                  src={featured}
                   alt="Tally on Cloud"
                 />
               </motion.div>

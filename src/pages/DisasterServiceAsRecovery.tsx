@@ -1,5 +1,6 @@
 import FreeDemoForm from "@/components/FreeDemoForm";
 import { TrustedByClients } from "@/components/TrustedByClient";
+import Recovery from "../assets/Recovery.webp"
 
 export function DisasterServiceAsRecovery() {
     return (
@@ -49,7 +50,7 @@ export function DisasterServiceAsRecovery() {
                 {/* Right */}
                 <div className="lg:w-1/2 flex justify-center">
                     <img
-                        src="https://www.hostingsafari.com/assets/img/customers/Recovery.webp"
+                        src={Recovery}
                         alt="Disaster Recovery"
                         className="w-full max-w-md object-cover rounded-lg shadow-lg"
                     />

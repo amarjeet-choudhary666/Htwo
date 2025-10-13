@@ -1,11 +1,12 @@
 import { FaHeadset } from 'react-icons/fa';
+import conactUs from "../assets/photo-1551836022-d5d88e9218df.avif"
 
 export default function ExpertService() {
   return (
     <section className="relative w-full h-[500px] flex items-center justify-center">
       {/* Background Image */}
       <img
-        src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1470&q=80"
+        src={conactUs}
         alt="Expert Service Background"
         className="absolute inset-0 w-full h-[500px] object-cover brightness-50"
       />

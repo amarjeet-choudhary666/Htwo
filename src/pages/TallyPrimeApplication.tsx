@@ -1,5 +1,6 @@
 import FreeDemoForm from "@/components/FreeDemoForm";
 import TallyPrimeProductPlans from "@/components/TallyPrimePricing";
+import cloudserver from "../assets/Cloudimage.jpg"
 
 export default function TallyPrimeApplication() {
   return (
@@ -7,8 +8,7 @@ export default function TallyPrimeApplication() {
       <section
         className="w-full h-[700px] bg-cover bg-center bg-fixed relative flex items-center py-12"
         style={{
-          backgroundImage:
-            "url('https://media.istockphoto.com/id/1350722246/photo/server-room-background.jpg?s=612x612&w=0&k=20&c=f6CoZ-PmbMo5zCsRPAP9B4tdwS8yvkSKBnCfC3GRmqU=')",
+          backgroundImage: `url(${cloudserver})`,
         }}
       >
         {/* Dark Overlay */}

@@ -5,6 +5,7 @@ import { WhoCanPartner } from "@/components/WhoCanPartner";
 import { motion } from 'framer-motion';
 import { BookOpen, Cloud, Gift, Lightbulb } from "lucide-react";
 import joinAsPartner from "../assets/cloudpartnter.jpg" 
+import joinWithUs from "../assets/Partner-With-Us.webp"
 
 export function JoinAsPartner() {
 
@@ -92,7 +93,7 @@ export function JoinAsPartner() {
                     viewport={{ once: true }}
                 >
                     <img
-                        src="https://www.hostingsafari.com/assets/img/customers/Partner-With-Us.webp"
+                        src={joinWithUs}
                         alt="Partner With Us"
                         className="w-full max-w-md object-cover rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500"
                     />
