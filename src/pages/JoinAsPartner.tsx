@@ -39,7 +39,7 @@ export function JoinAsPartner() {
         <div className="font-poppins">
 
             {/* hero */}
-            <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 py-16 px-6 relative overflow-hidden">
+            <section className="bg-white py-16 px-6 relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
 
                     {/* Left Column */}
