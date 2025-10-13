@@ -45,24 +45,24 @@ export default function LifeAtHtwo() {
             </div>
 
             <section className="flex flex-col md:flex-row justify-between items-stretch gap-6 px-6 md:px-10 py-10">
-{contactData.map((item, index) => (
-  <div key={index} className="flex-1 bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-    <h2 className="text-xl font-semibold mb-3 text-gray-800">{item.title}</h2>
-    <p className="flex items-center text-gray-600 mb-2">
-      <Mail className="w-5 h-5 mr-2 text-gray-500" />
-      <a href={`mailto:${item.email}`} className="hover:underline">
-        {item.email}
-      </a>
-    </p>
-    <p className="flex items-center text-gray-600">
-      <PhoneCall className="w-5 h-5 mr-2 text-gray-500" />
-      <a href={`tel:${item.phone}`} className="hover:underline">
-        {item.phone}
-      </a>
-    </p>
-  </div>
-))}
-</section>
+                {contactData.map((item, index) => (
+                    <div key={index} className="flex-1 bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                        <h2 className="text-xl font-semibold mb-3 text-gray-800">{item.title}</h2>
+                        <p className="flex items-center text-gray-600 mb-2">
+                            <Mail className="w-5 h-5 mr-2 text-gray-500" />
+                            <a href={`mailto:${item.email}`} className="hover:underline">
+                                {item.email}
+                            </a>
+                        </p>
+                        <p className="flex items-center text-gray-600">
+                            <PhoneCall className="w-5 h-5 mr-2 text-gray-500" />
+                            <a href={`tel:${item.phone}`} className="hover:underline">
+                                {item.phone}
+                            </a>
+                        </p>
+                    </div>
+                ))}
+            </section>
 
         </div>
     );

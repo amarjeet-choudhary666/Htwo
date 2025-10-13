@@ -9,7 +9,7 @@ const LiveChat = () => {
   ]);
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = (e: any) => {
+  const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newMessage.trim()) return;
 
@@ -128,7 +128,6 @@ const LiveChat = () => {
                 <button
                   type="submit"
                   className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={!newMessage.trim()}
                 >
                   <FaPaperPlane className="w-4 h-4" />
                 </button>

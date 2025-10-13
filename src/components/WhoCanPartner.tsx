@@ -1,6 +1,7 @@
   import { Card, CardContent } from "@/components/ui/card";
   import { Users, Briefcase, Cpu, Laptop, FileText, Code } from "lucide-react";
 
+
   export function WhoCanPartner() {
     const partners = [
       {
@@ -36,11 +37,11 @@
     ];
 
     return (
-      <section className="py-16 px-6 lg:px-20 bg-gray-50 min-h-[800px]">
+      <section className="py-16 px-6 lg:px-20 bg-gray-50 min-h-[800px] text-black">
         <h2 className="text-4xl lg:text-5xl font-bold text-center mb-12">Who Can Partner?</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {partners.map((partner, index) => (
-            <Card key={index} className="hover:shadow-2xl transition-shadow duration-300">
+            <Card key={index} className="hover:shadow-2xl transition-shadow duration-300 bg-white text-black">
               <CardContent className="flex flex-col items-start gap-4">
                 <div className="mb-2">{partner.icon}</div>
                 <h3 className="text-xl font-semibold">{partner.title}</h3>
