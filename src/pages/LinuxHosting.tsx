@@ -5,8 +5,10 @@ import HostingFeaturesTable from "@/components/HostingFeaturesTable";
 import { TrustedByClients } from "@/components/TrustedByClient";
 import { CheckCircle, ShieldCheck } from "lucide-react";
 import { FaHeadset } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function LinuxHostingSection() {
+  const navigate = useNavigate();
 
   const benefits = [
     "Linux is open source, it can be customised according to the landscape of hosting to fulfil your demands.",
@@ -132,7 +134,10 @@ export default function LinuxHostingSection() {
               to provide the reliability and flexibility you need.
             </p>
 
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition shadow-md">
+            <button 
+              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition shadow-md"
+              onClick={() => navigate('/get-in-touch')}
+            >
               Get Started Now
             </button>
           </div>
@@ -173,8 +178,11 @@ export default function LinuxHostingSection() {
                   <p className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                     {plan.price}
                   </p>
-                  <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition">
-                    Buy Now
+                  <button 
+                    className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                    onClick={() => navigate('/get-in-touch')}
+                  >
+                    Contact us
                   </button>
                 </div>
               </div>

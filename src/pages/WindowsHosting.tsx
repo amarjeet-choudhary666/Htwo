@@ -4,8 +4,10 @@ import FreeDemoForm from "@/components/FreeDemoForm";
 import { TrustedByClients } from "@/components/TrustedByClient";
 import WindowsHostingFeaturesTable from "@/components/WindowsHostingFeaturesTable";
 import { FaHeadset } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export function WindowsHosting() {
+    const navigate = useNavigate();
 
     const plans = [
         {
@@ -93,7 +95,10 @@ export function WindowsHosting() {
                             Get 100% Stress-Free, smartly managed Linux Web Hosting. Secure & Most Powerful Linux Hosting Plans. Effortlessly get the power and flexibility you need.
                         </p>
 
-                        <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition shadow-md">
+                        <button
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition shadow-md"
+                            onClick={() => navigate('/get-in-touch')}
+                        >
                             Get Started Now
                         </button>
                     </div>
@@ -142,19 +147,14 @@ export function WindowsHosting() {
                                     <p className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                                         {plan.price}
                                     </p>
-                                    <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition">
-                                        Buy Now
+                                    <button
+                                        className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                                        onClick={() => navigate('/get-in-touch')}
+                                    >
+                                        Contact us
                                     </button>
                                 </div>
 
-                                {/* Client Logo Placeholder */}
-                                <div className="mt-4 flex justify-center">
-                                    <img
-                                        src="/client-logo.png" // replace with actual logo
-                                        alt="Client Logo"
-                                        className="h-10 object-contain"
-                                    />
-                                </div>
                             </div>
                         ))}
                     </div>

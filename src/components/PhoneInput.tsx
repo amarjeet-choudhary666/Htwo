@@ -19,7 +19,6 @@ interface PhoneInputProps {
 }
 
 const PhoneInput = ({ 
-  value, 
   onChange, 
   placeholder = "Enter phone number", 
   className = "",
