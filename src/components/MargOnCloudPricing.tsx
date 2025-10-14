@@ -22,7 +22,7 @@ export function MargOnCloudPricingSection() {
 
   const plans = [
     {
-      title: "Marg on Cloud - SILVER",
+      title: "🥈Marg on Cloud - SILVER",
       users: "Single User",
       storage: "10 GB",
       ram: "Shared 64 GB RAM",
@@ -44,7 +44,7 @@ export function MargOnCloudPricingSection() {
       logo: "/logos/silver-logo.png",
     },
     {
-      title: "Marg on Cloud - GOLD",
+      title: "🥇Marg on Cloud - GOLD",
       users: "2 TO 5 Users",
       storage: "50 GB - SSD Storage",
       ram: "4 vCore / 8 GB RAM",
@@ -66,7 +66,7 @@ export function MargOnCloudPricingSection() {
       logo: "/logos/gold-logo.png",
     },
     {
-      title: "Marg on Cloud - DIAMOND",
+      title: "💎Marg on Cloud - DIAMOND",
       users: "6 TO 15 Users",
       storage: "150 GB - SSD Storage",
       ram: "6 vCore / 16 GB RAM",

@@ -59,7 +59,7 @@ function App() {
           <Route path='/email' element={<GoogleWorkspace />} />
           <Route path='/email/business-zimbra' element={<BusinessEmailZimbra />} />
         </Routes>
-        <LogoCarousel />
+        {/* <LogoCarousel /> */}
         <ReadyToStartFooter />
         <Footer />
         <BackToTopButton />
