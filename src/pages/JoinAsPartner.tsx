@@ -107,41 +107,6 @@ export function JoinAsPartner() {
 
       {/* who can join as partner */}
       <WhoCanPartner />
-
-      <section className="flex flex-col min-h-[800px] lg:flex-row items-center gap-12 px-6 lg:px-20 py-16 bg-white">
-        {/* Left Image */}
-        <div className="lg:w-1/2 flex justify-center">
-          <img
-            src={joinAsPartner}
-            alt="Partner Benefits"
-            className="w-full max-w-lg object-cover rounded-xl shadow-2xl"
-          />
-        </div>
-
-        {/* Right Benefits */}
-        <div className="lg:w-1/2 grid grid-cols-1 gap-6 bg-[#FFFFFF] text-black">
-          {benefits.map((benefit, index) => (
-            <Card
-              key={index}
-              className="hover:shadow-xl transition-shadow duration-300 border border-gray-100 bg-white text-black"
-            >
-              <CardContent className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  {benefit.icon}
-                  <h3 className="text-lg font-semibold">{benefit.title}</h3>
-                </div>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-          <Button
-            className="bg-orange-500 cursor-pointer py-5"
-            onClick={() => navigate('/get-in-touch')}
-          >
-            Get free demo
-          </Button>
-        </div>
-      </section>
     </div>
   )
 }
