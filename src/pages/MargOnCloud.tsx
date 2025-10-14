@@ -3,40 +3,37 @@ import { MargOnCloudPricingSection } from "@/components/MargOnCloudPricing";
 import { TrustedByClients } from "@/components/TrustedByClient";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import FreeDemoForm from "@/components/FreeDemoForm";
 
 export function MargOnCloud() {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white font-poppins">
       {/* Hero Section */}
-      <section className="relative min-h-[800px] flex items-center bg-blue-900">
-        {/* Background */}
-        <div className="absolute inset-0 bg-blue-900">
-          <img
-            src="https://odatacolocation.com/wp-content/uploads/2021/12/shutterstock_1929852050-1110x390.jpg"
-            alt="Cloud Background"
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 w-full flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 py-8">
-          {/* Left Text */}
-          <div className="text-white flex-1 text-center lg:text-left max-w-xl">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
+      <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden py-16 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+          {/* Left Column */}
+          <div className="lg:w-1/2 text-white space-y-6">
+            <h2 className="text-4xl lg:text-5xl font-bold leading-snug">
               Marg ERP on Cloud
-            </h1>
-            <p className="text-sm sm:text-base lg:text-lg mb-6 text-blue-100 leading-relaxed">
-              Complete accounting with GST solution. Access your business from anywhere, anytime.
+            </h2>
+
+            <p className="text-gray-300 text-base leading-relaxed">
+              Complete accounting with GST solution. Access your business from anywhere, anytime with enhanced security and performance.
             </p>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base px-6 py-3 w-full sm:w-auto">
+
+            <Button
+              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition shadow-md"
+              onClick={() => navigate('/get-in-touch')}
+            >
               Get Free Demo
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
-
-          {/* Right Form */}
-          <div className="flex-1 w-full max-w-md lg:max-w-lg">
+          {/* Right Column */}
+          <div className="lg:w-1/2 w-full p-8 rounded-xl">
             <FreeDemoForm />
           </div>
         </div>
@@ -82,8 +79,8 @@ export function MargOnCloud() {
               "Our team manages and installs servers",
               "GST compliant accounting solution"
             ].map((feature, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex items-start gap-3 p-4 sm:p-5 bg-gray-50 rounded-lg hover:shadow-md transition-shadow duration-200"
               >
                 <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 flex-shrink-0" />
@@ -94,8 +91,8 @@ export function MargOnCloud() {
         </div>
       </section>
 
-    
-          <FeatureGrid />
+
+      <FeatureGrid />
 
 
       {/* Trusted Section */}
