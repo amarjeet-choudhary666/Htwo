@@ -1,42 +1,11 @@
 import FreeDemoForm from "@/components/FreeDemoForm";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { WhoCanPartner } from "@/components/WhoCanPartner";
 import { motion } from 'framer-motion';
-import { BookOpen, Cloud, Gift, Lightbulb } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import joinAsPartner from "../assets/cloudpartnter.jpg"
 import joinWithUs from "../assets/Partner-With-Us.webp"
 
 export function JoinAsPartner() {
   const navigate = useNavigate();
-
-  const benefits = [
-    {
-      title: "Inspire your clients",
-      description:
-        "The whole motive of the partner program is to impress your clients and leave a remarkable impact. Hosting Safari not only provides high performance but also a professional and certified team available 24/7 to ensure client satisfaction.",
-      icon: <Lightbulb className="w-6 h-6 text-blue-600" />,
-    },
-    {
-      title: "Include Cloud services to your portfolio",
-      description:
-        "By adding cloud to your service set, you not only add value to your clients, but also open easy ways for mutual business growth.",
-      icon: <Cloud className="w-6 h-6 text-green-600" />,
-    },
-    {
-      title: "Rewards",
-      description:
-        "To build strong partnerships, we reward loyal clients with residual commissions for referrals. Every referral earns you credits every month until the customer remains active.",
-      icon: <Gift className="w-6 h-6 text-purple-600" />,
-    },
-    {
-      title: "Dedicated Training and Resources",
-      description:
-        "Hosting Safari provides marketing materials, case studies, product training, and a dedicated partnership manager available 24/7 to support you.",
-      icon: <BookOpen className="w-6 h-6 text-red-600" />,
-    },
-  ];
 
   return (
     <div className="font-poppins">

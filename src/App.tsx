@@ -14,7 +14,7 @@ import LinuxHostingSection from './pages/LinuxHosting'
 import BusyOnCloud from './pages/BusyOnCloud'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ReadyToStartFooter } from './components/readyToStartFooter';
-import LogoCarousel from './components/logoCarousel'
+// import LogoCarousel from './components/logoCarousel'
 import FloatingSupportButtons from './components/FloatingSupportButtons';
 import { MargOnCloud } from './pages/MargOnCloud'
 import { NavisionOnCloud } from './pages/NavisionOnCloud';
