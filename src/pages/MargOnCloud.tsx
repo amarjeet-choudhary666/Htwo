@@ -9,7 +9,7 @@ export function MargOnCloud() {
   return (
     <div className="bg-white font-poppins">
       {/* Hero Section */}
-      <section className="relative min-h-[500px] flex items-center bg-blue-900">
+      <section className="relative min-h-[800px] flex items-center bg-blue-900">
         {/* Background */}
         <div className="absolute inset-0 bg-blue-900">
           <img

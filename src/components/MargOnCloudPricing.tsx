@@ -1,22 +1,25 @@
 import { Button } from "@/components/ui/button";
-import { 
-  Users, 
-  Database, 
-  Cpu, 
-  Shield, 
-  Download, 
-  Globe, 
-  Settings, 
-  Key, 
-  Link, 
+import {
+  Users,
+  Database,
+  Cpu,
+  Shield,
+  Download,
+  Globe,
+  Settings,
+  Key,
+  Link,
   Lock,
   Server,
   Zap,
   Printer,
   UserCheck
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function MargOnCloudPricingSection() {
+  const navigate = useNavigate();
+
   const plans = [
     {
       title: "Marg on Cloud - SILVER",
@@ -134,14 +137,11 @@ export function MargOnCloudPricingSection() {
 
               {/* CTA Buttons */}
               <div className="mt-4 text-center space-y-2">
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105">
-                  Get Started
-                </Button>
                 <div>
                   <Button
                     variant="outline"
                     className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
-                    onClick={() => window.location.href = '/get-in-touch'}
+                    onClick={() => navigate('/get-in-touch')}
                   >
                     Contact Us
                   </Button>
