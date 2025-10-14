@@ -118,8 +118,8 @@ const LandingPage = () => {
             <button
               key={index}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentBgIndex
-                  ? 'bg-white'
-                  : 'bg-white/50 hover:bg-white/70'
+                ? 'bg-white'
+                : 'bg-white/50 hover:bg-white/70'
                 }`}
               onClick={() => setCurrentBgIndex(index)}
             />
@@ -164,7 +164,7 @@ const LandingPage = () => {
               >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-sm px-5 py-2 shadow-xl" onClick={() => navigate('/get-in-touch')}>
-                    Start Free Trial
+                    Contact Us
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </motion.div>
@@ -332,10 +332,10 @@ const LandingPage = () => {
               }
             ].map((feature, index) => (
               <motion.div
-                 key={index}
-                 variants={scaleIn}
-                 className="group bg-white rounded-xl p-4 text-blue-600 shadow-md hover:shadow-lg transition-all duration-300 border border-slate-100 hover:border-blue-200"
-               >
+                key={index}
+                variants={scaleIn}
+                className="group bg-white rounded-xl p-4 text-blue-600 shadow-md hover:shadow-lg transition-all duration-300 border border-slate-100 hover:border-blue-200"
+              >
                 <div className="mb-3 p-2 bg-slate-50 rounded-lg w-fit group-hover:bg-blue-50 transition-colors">
                   <feature.icon className={`w-8 h-8 text-blue-600`} />
                 </div>

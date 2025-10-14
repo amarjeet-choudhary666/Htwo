@@ -122,8 +122,9 @@ export default function TallyPrimeProductPlans() {
                 }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => window.location.href = '/get-in-touch'}
               >
-                Get Started
+                Contact Us
               </motion.button>
             </motion.div>
           ))}

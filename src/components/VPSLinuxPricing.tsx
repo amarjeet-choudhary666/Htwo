@@ -86,8 +86,12 @@ export default function VPSPricingTable() {
                                     <td className="px-4 py-3 text-sm text-center font-bold text-blue-700">₹ {plan.price}</td>
                                     <td className="px-4 py-3 text-center">
                                         <div className="flex justify-center gap-2">
-                                            <Button className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 text-sm">Buy Now</Button>
-                                            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 text-sm">Enquiry Now</Button>
+                                            <Button
+                                              className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 text-sm"
+                                              onClick={() => window.location.href = '/get-in-touch'}
+                                            >
+                                              Contact Us
+                                            </Button>
                                         </div>
                                     </td>
                                 </tr>

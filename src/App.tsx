@@ -7,7 +7,6 @@ import BackToTopButton from './components/BackToTopButton'
 import LandingPage from './pages/LandingPage'
 import TallyOnCloud from './pages/TallyOnCloud'
 import NotFound from './pages/NotFound'
-import CloudContactUs from './pages/ContactUs'
 import LifeAtHtwo from './pages/LifeAtHTwo'
 import TallyOnAws from './pages/TallyOnAws'
 import TallyDemoSection from './pages/TallyPrimeApplication'
@@ -41,7 +40,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/tally-on-cloud" element={<TallyOnCloud />} />
-          <Route path='/contactus' element={<CloudContactUs />} />
           <Route path='/get-in-touch' element={<LifeAtHtwo />} />
           <Route path='/tally-on-aws' element={<TallyOnAws />} />
           <Route path='/tally-prime-application' element={<TallyDemoSection />} />
@@ -52,14 +50,14 @@ function App() {
           <Route path='/sap-s4-hana-on-cloud' element={<CloudForSapBone />} />
           <Route path='/windowshosting' element={<WindowsHosting />} />
           <Route path='/vpslinux' element={<VPSLinux />} />
-          <Route path='/vpswindows' element={<VPSwindows/>}/>
-          <Route path='/dedicated-server' element={<DedicatedServer/>}/>
-          <Route path='/storage-as-a-service' element={<StorageAsService/>}/>
-          <Route path='/backup-recovery' element={<BackupAndRecovery/>}/>
-          <Route path='/disaster-recovery-as-a-service' element={<DisasterServiceAsRecovery/>}/>
-          <Route path='/join-as-a-partner' element={<JoinAsPartner/>}/>
-          <Route path='/email' element={<GoogleWorkspace/>}/>
-          <Route path='/email/business-zimbra' element={<BusinessEmailZimbra/>}/>
+          <Route path='/vpswindows' element={<VPSwindows />} />
+          <Route path='/dedicated-server' element={<DedicatedServer />} />
+          <Route path='/storage-as-a-service' element={<StorageAsService />} />
+          <Route path='/backup-recovery' element={<BackupAndRecovery />} />
+          <Route path='/disaster-recovery-as-a-service' element={<DisasterServiceAsRecovery />} />
+          <Route path='/join-as-a-partner' element={<JoinAsPartner />} />
+          <Route path='/email' element={<GoogleWorkspace />} />
+          <Route path='/email/business-zimbra' element={<BusinessEmailZimbra />} />
         </Routes>
         <LogoCarousel />
         <ReadyToStartFooter />

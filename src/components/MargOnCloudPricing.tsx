@@ -132,11 +132,20 @@ export function MargOnCloudPricingSection() {
                 />
               </div>
 
-              {/* CTA Button */}
-              <div className="mt-4 text-center">
+              {/* CTA Buttons */}
+              <div className="mt-4 text-center space-y-2">
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105">
                   Get Started
                 </Button>
+                <div>
+                  <Button
+                    variant="outline"
+                    className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
+                    onClick={() => window.location.href = '/get-in-touch'}
+                  >
+                    Contact Us
+                  </Button>
+                </div>
               </div>
             </div>
           ))}

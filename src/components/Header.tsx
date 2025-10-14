@@ -8,7 +8,7 @@ import { SiSap } from 'react-icons/si';
 import { MdEmail, MdOutlineStorage, MdBackup } from 'react-icons/md';
 import { FcDataRecovery } from 'react-icons/fc';
 import { IoBagSharp } from 'react-icons/io5';
-import headerLogo from '../assets/headerlogo.png';
+import headerLogo from '../assets/header_logo.png';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 
 interface DropdownItem {

@@ -63,7 +63,6 @@ export default function LifeAtHtwo() {
                     </div>
                 ))}
             </section>
-
         </div>
     );
 }

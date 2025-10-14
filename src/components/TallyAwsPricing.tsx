@@ -97,14 +97,15 @@ export default function TallyOnAwsPricing() {
                 ))}
               </ul>
 
-              <button 
+              <button
                 className={`w-full py-3 rounded-lg font-semibold transition-colors duration-300 ${
                   plan.popular
                     ? 'bg-blue-500 hover:bg-blue-600 text-white'
                     : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
                 }`}
+                onClick={() => window.location.href = '/get-in-touch'}
               >
-                Get Started
+                Contact Us
               </button>
             </div>
           ))}

@@ -112,8 +112,11 @@ export const BusyOnCloudPricing = () => {
             </ul>
 
             {/* CTA */}
-            <Button className={`w-full py-3 ${plan.popular ? 'bg-blue-500' : 'bg-gray-700'} text-white`}>
-              Get Started
+            <Button
+              className={`w-full py-3 ${plan.popular ? 'bg-blue-500' : 'bg-gray-700'} text-white`}
+              onClick={() => window.location.href = '/get-in-touch'}
+            >
+              Contact Us
             </Button>
           </div>
         ))}

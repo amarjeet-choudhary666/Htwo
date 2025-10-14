@@ -263,9 +263,10 @@ export function TallyOnCloudPricing() {
                     }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href = '/get-in-touch'}
                 >
                   <span className="flex items-center justify-center">
-                    Contact Sales
+                    Contact Us
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </span>
                 </motion.button>
