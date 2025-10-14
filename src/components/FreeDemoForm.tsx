@@ -35,7 +35,7 @@ const FreeDemoForm = () => {
     name: "",
     email: "",
     phone: "",
-    country: "",
+    country: "+91",
     service: "",
     question: "",
   });
