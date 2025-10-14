@@ -1,14 +1,18 @@
 import { motion } from "framer-motion";
 import FreeDemoForm from "@/components/FreeDemoForm";
 import { TrustedByClients } from "@/components/TrustedByClient";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import cloudForSapBoNE from "../assets/cloudforsapherosection.avif"
 import cloudsap from "../assets/sap-cloud.webp"
 
 export function CloudForSapBone() {
+  const navigate = useNavigate();
+
   return (
     <div className="font-poppins">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[600px] sm:min-h-[700px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-[800px] flex items-center justify-center overflow-hidden">
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0">
           <img
@@ -20,16 +24,11 @@ export function CloudForSapBone() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 gap-6 lg:gap-12 py-8 sm:py-12">
+        <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between px-6 gap-10 py-16">
           {/* Left Text Content */}
-          <motion.div
-            className="text-white max-w-2xl text-center lg:text-left space-y-4 sm:space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <div className="lg:w-1/2 text-white space-y-6">
             <motion.h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+              className="text-4xl lg:text-5xl font-bold leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -38,7 +37,7 @@ export function CloudForSapBone() {
             </motion.h1>
 
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-blue-100 font-medium"
+              className="text-lg text-blue-100 font-medium"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -47,7 +46,7 @@ export function CloudForSapBone() {
             </motion.p>
 
             <motion.p
-              className="text-sm sm:text-base md:text-lg text-blue-100 leading-relaxed"
+              className="text-base text-blue-100 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -62,31 +61,40 @@ export function CloudForSapBone() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="pt-4"
             >
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                <span className="px-3 py-1 bg-blue-600/50 backdrop-blur-sm rounded-full text-xs sm:text-sm border border-blue-400/30">
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-blue-600/50 backdrop-blur-sm rounded-full text-sm border border-blue-400/30">
                   High Availability
                 </span>
-                <span className="px-3 py-1 bg-purple-600/50 backdrop-blur-sm rounded-full text-xs sm:text-sm border border-purple-400/30">
+                <span className="px-3 py-1 bg-purple-600/50 backdrop-blur-sm rounded-full text-sm border border-purple-400/30">
                   Enterprise Security
                 </span>
-                <span className="px-3 py-1 bg-indigo-600/50 backdrop-blur-sm rounded-full text-xs sm:text-sm border border-indigo-400/30">
+                <span className="px-3 py-1 bg-indigo-600/50 backdrop-blur-sm rounded-full text-sm border border-indigo-400/30">
                   24/7 Support
                 </span>
               </div>
             </motion.div>
-          </motion.div>
+
+            {/* Contact Us Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+            >
+              <Button
+                className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition shadow-md"
+                onClick={() => navigate('/get-in-touch')}
+              >
+                Contact Us
+              </Button>
+            </motion.div>
+          </div>
 
           {/* Right Form */}
-          <motion.div
-            className="w-full max-w-md lg:max-w-lg mt-8 lg:mt-0"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+          <div className="lg:w-1/2 w-full">
+            <div className="rounded-xl shadow-lg p-6">
               <FreeDemoForm />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -214,8 +222,12 @@ export function CloudForSapBone() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">{stat.number}</div>
-                <div className="text-xs sm:text-sm text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600 font-medium">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -247,8 +259,7 @@ export function CloudForSapBone() {
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 sm:p-8 rounded-2xl border border-blue-200">
               <div className="text-4xl text-blue-400 mb-4">"</div>
               <p className="text-sm sm:text-base text-gray-700 italic mb-4">
-                HTwo's SAP cloud hosting has transformed our business operations. The reliability and performance 
-                of their infrastructure, combined with exceptional 24/7 support, has made them our trusted technology partner.
+                HTwo's SAP cloud hosting has transformed our business operations. The reliability and performance of their infrastructure, combined with exceptional 24/7 support, has made them our trusted technology partner.
               </p>
               <div className="font-semibold text-gray-900">- Enterprise Client</div>
               <div className="text-xs text-gray-500 mt-1">Manufacturing Industry</div>

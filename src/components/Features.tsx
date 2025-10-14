@@ -2,6 +2,7 @@ import { FaServer, FaShieldAlt, FaDatabase, FaGlobe, FaDesktop, FaDollarSign } f
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Feature {
   icon: React.ComponentType<{ className?: string }>;
@@ -66,14 +67,14 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
     >
       {/* Background Gradient on Hover */}
       <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-      
+
       {/* Icon Container */}
       <div className="relative mb-6">
         <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-2xl blur-lg group-hover:blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
         <div className={`relative inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl text-white shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110`}>
           <Icon className="w-7 h-7" />
         </div>
-        
+
         {/* Feature Number */}
         <div className="absolute -top-2 -right-2 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-bold">
           {index + 1}
@@ -99,13 +100,14 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
 export const FeatureGrid = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const navigate = useNavigate();
 
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 rounded-full translate-x-1/3 translate-y-1/3 opacity-50"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
@@ -115,7 +117,7 @@ export const FeatureGrid = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -123,7 +125,7 @@ export const FeatureGrid = () => {
           >
             Exclusive <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Features</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -131,9 +133,9 @@ export const FeatureGrid = () => {
           >
             Discover why thousands of businesses trust our premium Tally hosting solutions
           </motion.p>
-          
+
           {/* Decorative Line */}
-          <motion.div 
+          <motion.div
             className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-6 rounded-full"
             initial={{ width: 0 }}
             animate={isInView ? { width: 96 } : { width: 0 }}
@@ -149,7 +151,7 @@ export const FeatureGrid = () => {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -162,6 +164,7 @@ export const FeatureGrid = () => {
             className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/get-in-touch')}
           >
             Get Started Today
           </motion.button>
